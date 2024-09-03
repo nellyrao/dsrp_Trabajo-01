@@ -1,6 +1,6 @@
 # dsrp_Trabajo-01
 
-#Escenario: 
+##Escenario: 
 Empresa de Tecnología
 
 #Contexto: 
