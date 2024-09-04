@@ -24,6 +24,10 @@ Una empresa de tecnología en rápido crecimiento necesita un sistema para gesti
   capacidad máxima.
   Los empleados están asignados a una oficina específica.
 
+  #Roles:
+  Los empleados pueden tener diferentes roles en la empresa (por ejemplo, desarrollador, administrador de base de datos, gerente de proyecto).
+  Cada rol tiene un identificador único y un nombre.
+
 #Relaciones:
 Un empleado pertenece a un solo departamento.
 Un empleado puede trabajar en varios proyectos.
