@@ -1,0 +1,69 @@
+-- Insertando datos en la tabla Departamentos
+INSERT INTO Departamentos (departamento_id, nombre_departamento, ubicacion, jefe_departamento_id, fecha_creacion, presupuesto, numero_empleados, descripcion, proyectos_asignados, estado)
+VALUES 
+(1, 'Tecnología', 'Edificio A', 1, '2022-01-01', 100000.00, 10, 'Departamento de desarrollo e innovación', 5, 'Activo'),
+(2, 'Recursos Humanos', 'Edificio B', 2, '2021-06-01', 50000.00, 5, 'Gestión del personal y contrataciones', 2, 'Activo'),
+(3, 'Finanzas', 'Edificio C', 3, '2021-03-01', 200000.00, 7, 'Manejo de presupuestos y nómina', 3, 'Activo');
+
+-- Insertando datos en la tabla Empleados
+INSERT INTO Empleados (empleado_id, nombre, apellido, correo_electronico, telefono, direccion, cargo, fecha_contratacion, salario, departamento_id)
+VALUES 
+(1, 'Juan', 'Pérez', 'juan.perez@empresa.com', '5551234567', 'Calle Falsa 123', 'Desarrollador Senior', '2022-01-10', 4500.00, 1),
+(2, 'Ana', 'García', 'ana.garcia@empresa.com', '5559876543', 'Avenida Siempre Viva 456', 'Gerente de RRHH', '2021-05-15', 6000.00, 2),
+(3, 'Luis', 'Martínez', 'luis.martinez@empresa.com', '5558765432', 'Boulevard Independencia 789', 'Contador', '2021-04-20', 4000.00, 3);
+
+-- Insertando datos en la tabla Oficinas
+INSERT INTO Oficinas (oficina_id, capacidad_maxima, telefono, direccion, responsable_id, fecha_apertura, tipo_oficina, numero_empleados_actuales, estado, descripcion)
+VALUES 
+(1, 50, '5553216549', 'Edificio A, Planta 1', 1, '2021-12-01', 'Oficina Principal', 10, 'Operativa', 'Oficina principal de tecnología'),
+(2, 20, '5559873215', 'Edificio B, Planta 2', 2, '2021-11-01', 'Oficina de RRHH', 5, 'Operativa', 'Oficina de Recursos Humanos'),
+(3, 30, '5551237896', 'Edificio C, Planta 3', 3, '2021-10-01', 'Oficina de Finanzas', 7, 'Operativa', 'Oficina de Finanzas');
+
+-- Insertando datos en la tabla Roles
+INSERT INTO Roles (rol_id, nombre_rol, descripcion, nivel_acceso, fecha_creacion, estado, tipo_rol, departamento_id, numero_empleados_asignados, responsable_id)
+VALUES 
+(1, 'Administrador', 'Acceso completo al sistema', 1, '2022-01-01', 'Activo', 'Administrativo', 1, 10, 1),
+(2, 'Gerente', 'Acceso a la gestión de personas', 2, '2021-06-01', 'Activo', 'Administrativo', 2, 5, 2),
+(3, 'Analista Financiero', 'Acceso a finanzas', 3, '2021-03-01', 'Activo', 'Financiero', 3, 7, 3);
+
+-- Insertando datos en la tabla Proyectos
+INSERT INTO Proyectos (proyecto_id, estado, presupuesto, nombre_proyecto, descripcion, fecha_inicio, fecha_fin, lider_proyecto_id, departamento_id, numero_empleados_asignados)
+VALUES 
+(1, 'En Proceso', 50000.00, 'Proyecto Alpha', 'Desarrollo de un nuevo sistema', '2022-02-01', '2022-12-01', 1, 1, 5),
+(2, 'Completado', 30000.00, 'Proyecto Beta', 'Optimización del sistema actual', '2021-04-01', '2021-10-01', 1, 1, 3),
+(3, 'En Proceso', 15000.00, 'Proyecto Gamma', 'Capacitación interna de empleados', '2022-03-01', NULL, 2, 2, 5);
+
+-- Insertando datos en la tabla Empleados_Proyectos
+INSERT INTO Empleados_Proyectos (proyecto_id, empleado_id, rol_en_proyecto, fecha_asignacion, estado, horas_semanales, comentarios, fecha_finalizacion, porcentaje_avance, responsable_id)
+VALUES 
+(1, 1, 'Líder Técnico', '2022-02-01', 'Activo', 40, 'Responsable del desarrollo técnico', NULL, 50.00, 1),
+(1, 2, 'Analista', '2022-02-15', 'Activo', 20, 'Apoyo en análisis de requerimientos', NULL, 30.00, 1),
+(2, 3, 'Desarrollador', '2021-04-01', 'Completado', 35, 'Desarrollo de módulos del sistema', '2021-10-01', 100.00, 1);
+
+-- Insertando datos en la tabla Salarios
+INSERT INTO Salarios (salario_id, empleado_id, salario_base, fecha_actualizacion, bonificaciones, deducciones, salario_neto, moneda, estado, comentarios)
+VALUES 
+(1, 1, 4500.00, '2022-01-10', 500.00, 200.00, 4800.00, 'USD', 'Activo', 'Salario actualizado con bonificación'),
+(2, 2, 6000.00, '2021-06-01', 300.00, 100.00, 6200.00, 'USD', 'Activo', 'Salario con ajuste de rendimiento'),
+(3, 3, 4000.00, '2021-04-20', 200.00, 50.00, 4150.00, 'USD', 'Activo', 'Bonificación por desempeño');
+
+-- Insertando datos en la tabla Asistencia
+INSERT INTO Asistencia (asistencia_id, empleado_id, fecha, hora_entrada, hora_salida, estado, comentarios, tipo_asistencia, justificacion, responsable_id)
+VALUES 
+(1, 1, '2022-09-22', '08:00:00', '17:00:00', 'Presente', NULL, 'Normal', NULL, NULL),
+(2, 2, '2022-09-22', '08:15:00', '17:00:00', 'Presente', NULL, 'Normal', NULL, NULL),
+(3, 3, '2022-09-22', NULL, NULL, 'Ausente', 'Permiso de salud', 'Permiso', 'Cita médica', 2);
+
+-- Insertando datos en la tabla Capacitaciones
+INSERT INTO Capacitaciones (capacitacion_id, empleado_id, nombre_capacitacion, fecha_capacitacion, duracion, estado, metodologia, comentarios, responsable_id, tipo_capacitacion)
+VALUES 
+(1, 1, 'Curso de Desarrollo Ágil', '2022-05-10', 5, 'Completado', 'Presencial', 'Capacitación completa y satisfactoria', 2, 'Técnica'),
+(2, 2, 'Liderazgo y Gestión de Equipos', '2022-06-01', 3, 'En Proceso', 'Virtual', 'Capacitación en progreso', 2, 'Administrativa'),
+(3, 3, 'Finanzas Corporativas', '2022-07-15', 4, 'Completado', 'Presencial', 'Excelente desempeño', 3, 'Financiera');
+
+-- Insertando datos en la tabla Proyectos_Asignados
+INSERT INTO Proyectos_Asignados (proyecto_asignado_id, proyecto_id, empleado_id, fecha_asignacion, rol_en_proyecto, estado, horas_semanales, comentarios, fecha_finalizacion, porcentaje_avance)
+VALUES 
+(1, 1, 1, '2022-02-01', 'Líder Técnico', 'En Progreso', 40, 'Responsable de la parte técnica', NULL, 50.00),
+(2, 2, 2, '2022-04-15', 'Analista', 'Completado', 20, 'Análisis de requerimientos', '2022-10-01', 100.00),
+(3, 3, 3, '2022-07-01', 'Desarrollador', 'En Progreso', 35, 'Desarrollo de módulos', NULL, 30.00);
