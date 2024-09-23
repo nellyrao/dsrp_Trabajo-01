@@ -1,0 +1,155 @@
+-- Tabla: Departamentos
+CREATE TABLE Departamentos (
+    departamento_id INT PRIMARY KEY,
+    nombre_departamento VARCHAR(100) NOT NULL,
+    ubicacion VARCHAR(100) NULL,
+    jefe_departamento_id INT NULL,
+    fecha_creacion DATE NULL,
+    presupuesto DECIMAL(18,2) NULL,
+    numero_empleados INT NULL,
+    descripcion TEXT NULL,
+    proyectos_asignados INT NULL,
+    estado VARCHAR(50) NULL
+);
+
+-- Tabla: Empleados
+CREATE TABLE Empleados (
+    empleado_id INT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    correo_electronico VARCHAR(150) NOT NULL,
+    telefono VARCHAR(15) NULL,
+    direccion VARCHAR(255) NULL,
+    cargo VARCHAR(100) NULL,
+    fecha_contratacion DATE NOT NULL,
+    salario DECIMAL(18,2) NOT NULL,
+    departamento_id INT,
+    FOREIGN KEY (departamento_id) REFERENCES Departamentos(departamento_id)
+);
+
+-- Tabla: Oficinas
+CREATE TABLE Oficinas (
+    oficina_id INT PRIMARY KEY,
+    capacidad_maxima INT NOT NULL,
+    telefono VARCHAR(15) NULL,
+    direccion VARCHAR(255) NOT NULL,
+    responsable_id INT NULL,
+    fecha_apertura DATE NULL,
+    tipo_oficina VARCHAR(100) NULL,
+    numero_empleados_actuales INT NULL,
+    estado VARCHAR(50) NULL,
+    descripcion TEXT NULL,
+    FOREIGN KEY (responsable_id) REFERENCES Empleados(empleado_id)
+);
+
+-- Tabla: Roles
+CREATE TABLE Roles (
+    rol_id INT PRIMARY KEY,
+    nombre_rol VARCHAR(100) NOT NULL,
+    descripcion TEXT NULL,
+    nivel_acceso INT NULL,
+    fecha_creacion DATE NULL,
+    estado VARCHAR(50) NULL,
+    tipo_rol VARCHAR(100) NULL,
+    departamento_id INT NULL,
+    numero_empleados_asignados INT NULL,
+    responsable_id INT NULL,
+    FOREIGN KEY (departamento_id) REFERENCES Departamentos(departamento_id),
+    FOREIGN KEY (responsable_id) REFERENCES Empleados(empleado_id)
+);
+
+-- Tabla: Proyectos
+CREATE TABLE Proyectos (
+    proyecto_id INT PRIMARY KEY,
+    estado VARCHAR(50) NULL,
+    presupuesto DECIMAL(18,2) NULL,
+    nombre_proyecto VARCHAR(100) NOT NULL,
+    descripcion TEXT NULL,
+    fecha_inicio DATE NULL,
+    fecha_fin DATE NULL,
+    lider_proyecto_id INT NOT NULL,
+    departamento_id INT NULL,
+    numero_empleados_asignados INT NULL,
+    FOREIGN KEY (departamento_id) REFERENCES Departamentos(departamento_id)
+);
+
+-- Tabla: Empleados_Proyectos
+CREATE TABLE Empleados_Proyectos (
+    proyecto_id INT,
+    empleado_id INT,
+    rol_en_proyecto VARCHAR(100) NULL,
+    fecha_asignacion DATE NULL,
+    estado VARCHAR(50) NULL,
+    horas_semanales INT NULL,
+    comentarios TEXT NULL,
+    fecha_finalizacion DATE NULL,
+    porcentaje_avance DECIMAL(5,2) NULL,
+    responsable_id INT NULL,
+    PRIMARY KEY (proyecto_id, empleado_id),
+    FOREIGN KEY (proyecto_id) REFERENCES Proyectos(proyecto_id),
+    FOREIGN KEY (empleado_id) REFERENCES Empleados(empleado_id)
+);
+
+-- Tabla: Salarios
+CREATE TABLE Salarios (
+    salario_id INT PRIMARY KEY,
+    empleado_id INT,
+    salario_base DECIMAL(18,2) NOT NULL,
+    fecha_actualizacion DATE NULL,
+    bonificaciones DECIMAL(18,2) NULL,
+    deducciones DECIMAL(18,2) NULL,
+    salario_neto DECIMAL(18,2) NULL,
+    moneda VARCHAR(10) NULL,
+    estado VARCHAR(50) NULL,
+    comentarios TEXT NULL,
+    FOREIGN KEY (empleado_id) REFERENCES Empleados(empleado_id)
+);
+
+-- Tabla: Asistencia
+CREATE TABLE Asistencia (
+    asistencia_id INT PRIMARY KEY,
+    empleado_id INT,
+    fecha DATE NOT NULL,
+    hora_entrada TIME NULL,
+    hora_salida TIME NULL,
+    estado VARCHAR(50) NULL,
+    comentarios TEXT NULL,
+    tipo_asistencia VARCHAR(50) NULL,
+    justificacion TEXT NULL,
+    responsable_id INT NULL,
+    FOREIGN KEY (empleado_id) REFERENCES Empleados(empleado_id),
+    FOREIGN KEY (responsable_id) REFERENCES Empleados(empleado_id)
+);
+
+-- Tabla: Capacitaciones
+CREATE TABLE Capacitaciones (
+    capacitacion_id INT PRIMARY KEY,
+    empleado_id INT,
+    nombre_capacitacion VARCHAR(100) NOT NULL,
+    fecha_capacitacion DATE NULL,
+    duracion INT NULL,
+    estado VARCHAR(50) NULL,
+    metodologia VARCHAR(100) NULL,
+    comentarios TEXT NULL,
+    responsable_id INT NULL,
+    tipo_capacitacion VARCHAR(100) NULL,
+    FOREIGN KEY (empleado_id) REFERENCES Empleados(empleado_id),
+    FOREIGN KEY (responsable_id) REFERENCES Empleados(empleado_id)
+);
+
+-- Tabla: Proyectos_Asignados
+CREATE TABLE Proyectos_Asignados (
+    proyecto_asignado_id INT PRIMARY KEY,
+    proyecto_id INT,
+    empleado_id INT,
+    fecha_asignacion DATE NULL,
+    rol_en_proyecto VARCHAR(100) NULL,
+    estado VARCHAR(50) NULL,
+    horas_semanales INT NULL,
+    comentarios TEXT NULL,
+    fecha_finalizacion DATE NULL,
+    porcentaje_avance DECIMAL(5,2) NULL,
+    FOREIGN KEY (proyecto_id) REFERENCES Proyectos(proyecto_id),
+    FOREIGN KEY (empleado_id) REFERENCES Empleados(empleado_id)
+);
+
