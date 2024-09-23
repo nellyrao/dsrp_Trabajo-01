@@ -1,0 +1,44 @@
+Table departamentos
+INSERT INTO Departamentos (departamento_id, nombre_departamento, ubicacion, jefe_departamento_id, fecha_creacion, presupuesto, numero_empleados, descripcion, proyectos_asignados, estado)
+VALUES 
+(1, 'Tecnología', 'Edificio A', 1, '2022-01-01', 100000.00, 10, 'Departamento de desarrollo e innovación', 5, 'Activo'),
+(2, 'Recursos Humanos', 'Edificio B', 2, '2021-06-01', 50000.00, 5, 'Gestión del personal y contrataciones', 2, 'Activo'),
+(3, 'Finanzas', 'Edificio C', 3, '2021-03-01', 200000.00, 7, 'Manejo de presupuestos y nómina', 3, 'Activo'),
+(4, 'Ventas', 'Edificio D', 4, '2021-05-15', 120000.00, 8, 'Departamento de ventas y mercadeo', 4, 'Activo'),
+(5, 'Soporte Técnico', 'Edificio E', 5, '2021-04-10', 60000.00, 6, 'Atención a clientes y soporte', 2, 'Activo');
+
+Tabla Oficinas
+INSERT INTO Oficinas (oficina_id, capacidad_maxima, telefono, direccion, responsable_id, fecha_apertura, tipo_oficina, numero_empleados_actuales, estado, descripcion)
+VALUES 
+(1, 50, '5553216549', 'Edificio A, Planta 1', 1, '2021-12-01', 'Oficina Principal', 10, 'Operativa', 'Oficina principal de tecnología'),
+(2, 20, '5559873215', 'Edificio B, Planta 2', 2, '2021-11-01', 'Oficina de RRHH', 5, 'Operativa', 'Oficina de Recursos Humanos'),
+(3, 30, '5551237896', 'Edificio C, Planta 3', 3, '2021-10-01', 'Oficina de Finanzas', 7, 'Operativa', 'Oficina de Finanzas'),
+(4, 40, '5553214567', 'Edificio D, Planta 4', 4, '2021-09-01', 'Oficina de Ventas', 8, 'Operativa', 'Oficina de Ventas y Mercadeo'),
+(5, 25, '5556547896', 'Edificio E, Planta 5', 5, '2021-08-01', 'Oficina de Soporte', 6, 'Operativa', 'Oficina de Soporte Técnico');
+
+Tabla Roles
+INSERT INTO Roles (rol_id, nombre_rol, descripcion, nivel_acceso, fecha_creacion, estado, tipo_rol, departamento_id, numero_empleados_asignados, responsable_id)
+VALUES 
+(1, 'Administrador', 'Acceso completo al sistema', 1, '2022-01-01', 'Activo', 'Administrativo', 1, 10, 1),
+(2, 'Gerente', 'Acceso a la gestión de personas', 2, '2021-06-01', 'Activo', 'Administrativo', 2, 5, 2),
+(3, 'Analista Financiero', 'Acceso a finanzas', 3, '2021-03-01', 'Activo', 'Financiero', 3, 7, 3),
+(4, 'Vendedor Senior', 'Acceso a ventas y clientes', 4, '2021-07-01', 'Activo', 'Ventas', 8, 4),
+(5, 'Soporte Técnico', 'Acceso a tickets y atención', 3, '2021-04-15', 'Activo', 'Soporte', 6, 5);
+
+Tabla Proyectos
+INSERT INTO Proyectos (proyecto_id, estado, presupuesto, nombre_proyecto, descripcion, fecha_inicio, fecha_fin, lider_proyecto_id, departamento_id, numero_empleados_asignados)
+VALUES 
+(1, 'En Proceso', 50000.00, 'Proyecto Alpha', 'Desarrollo de un nuevo sistema', '2022-02-01', '2022-12-01', 1, 1, 5),
+(2, 'Completado', 30000.00, 'Proyecto Beta', 'Optimización del sistema actual', '2021-04-01', '2021-10-01', 1, 1, 3),
+(3, 'En Proceso', 15000.00, 'Proyecto Gamma', 'Capacitación interna de empleados', '2022-03-01', NULL, 2, 2, 5),
+(4, 'En Proceso', 80000.00, 'Proyecto Delta', 'Expansión de la infraestructura de red', '2022-06-01', NULL, 3, 1, 7),
+(5, 'En Planificación', 100000.00, 'Proyecto Epsilon', 'Implementación de CRM', '2022-05-01', NULL, 4, 4, 8);
+
+Tabla Capacitaciones
+INSERT INTO Capacitaciones (capacitacion_id, empleado_id, nombre_capacitacion, fecha_capacitacion, duracion, estado, metodologia, comentarios, responsable_id, tipo_capacitacion)
+VALUES 
+(1, 1, 'Curso de Desarrollo Ágil', '2022-05-10', 5, 'Completado', 'Presencial', 'Capacitación completa y satisfactoria', 2, 'Técnica'),
+(2, 2, 'Liderazgo y Gestión de Equipos', '2022-06-01', 3, 'En Proceso', 'Virtual', 'Capacitación en progreso', 2, 'Administrativa'),
+(3, 3, 'Finanzas Corporativas', '2022-07-15', 4, 'Completado', 'Presencial', 'Excelente desempeño', 3, 'Financiera'),
+(4, 4, 'Ventas Estratégicas', '2022-08-01', 2, 'En Proceso', 'Virtual', 'Capacitación en ventas avanzada', 4, 'Ventas'),
+(5, 5, 'Soporte Técnico Avanzado', '2022-09-01', 3, 'Completado', 'Presencial', 'Capacitación técnica avanzada', 5, 'Soporte');
